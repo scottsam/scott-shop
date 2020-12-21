@@ -37,20 +37,16 @@ app.use(
 
 app.use(cookieParser());
 
-//app.use(cors());
 app.use((req, res, next) => {
   res.set("Cache-Control", "no-store");
-  res.append("Access-Control-Allow-Origin", ["*"]);
-  res.append("Access-Control-Allow-Methods", "GET,PUT,POST,DELETE");
-  res.append("Access-Control-Allow-Headers", "Content-Type");
 
   next();
 });
-app.use(express.static(path.join(__dirname, "build")));
 
-//if (process.env.NODE_ENV === "production") {
-//app.use(cors({ origin: `${process.env.CLIENT_URL}` }));
-//}
+if (process.env.NODE_ENV === "production") {
+  //app.use(cors({ origin: `${process.env.CLIENT_URL}` }));
+  app.use(cors({ origin: `https://scott-ecomm-shop.herokuapp.com` }));
+}
 
 if (process.env.NODE_ENV === "production") {
   app.use(express.static(path.join(__dirname, "client", "build")));
@@ -59,7 +55,7 @@ if (process.env.NODE_ENV === "production") {
     res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
   });
 }
-
+app.use(cors());
 const port = process.env.PORT || 8000;
 
 app.use("/", usersRoute);
