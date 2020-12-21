@@ -37,7 +37,6 @@ exports.Register = async function (req, res) {
         },
       });
   } catch (err) {
-    console.log(err);
     return res.status(500).json({
       message: {
         msgBody: "An Error Occured",
@@ -76,7 +75,6 @@ exports.Login = async (req, res) => {
       role: user.role,
     });
   } catch (err) {
-    console.log(err);
     return res.status(500).json({
       message: {
         msgBody: "An Error Occured",
@@ -133,7 +131,6 @@ exports.isAdmin = (...role) => {
 };
 
 exports.authorized = async (req, res, next) => {
-  console.log(req.user);
   if (req.user.id != req.profile._id) {
     console.log(req.user.id);
     console.log(req.profile._id);

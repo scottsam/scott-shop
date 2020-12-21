@@ -20,7 +20,7 @@ const Register = ({ location, history }) => {
   const userRegister = useSelector((state) => state.userRegister);
   const { loading, error, success, userInfo } = userRegister;
 
-  const redirect = location.search ? location.search.split("=")[1] : "/";
+  const redirect = location.search ? location.search.split("=")[1] : "/home";
 
   useEffect(() => {
     if (success && userInfo) {

@@ -17,7 +17,7 @@ const categoryRoute = require("./routes/category");
 const orderRoute = require("./routes/order");
 
 mongoose.connect(
-  process.env.MONGO_URI || "mongodb://localhost:27017/e-commerce",
+  process.env.MONGO_URI,
   { useNewUrlParser: true, useUnifiedTopology: true },
   () => {
     console.log("Database Conected successfully...");
@@ -41,16 +41,8 @@ app.use((req, res, next) => {
 });
 app.use(express.static(path.join(__dirname, "build")));
 
-if (process.env.NODE_ENV === "development") {
-  app.use(cors({ origin: `${process.env.CLIENT_URL}` }));
-}
-
 if (process.env.NODE_ENV === "production") {
-  app.use(express.static(path.join(__dirname, "client", "build")));
-  app.get("*", (req, res) => {
-    res.sendFile(path.resolve(__dirname, "build", "index.html"));
-    app.use(cors({ origin: `${process.env.CLIENT_URL}` }));
-  });
+  app.use(cors({ origin: `${process.env.CLIENT_URL}` }));
 }
 
 const port = process.env.PORT || 8080;
