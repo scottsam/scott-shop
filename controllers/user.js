@@ -75,12 +75,7 @@ exports.Login = async (req, res) => {
       role: user.role,
     });
   } catch (err) {
-    return res.status(500).json({
-      message: {
-        msgBody: "An Error Occured",
-        Error: true,
-      },
-    });
+    throw new Error("server error");
   }
 };
 
@@ -132,8 +127,6 @@ exports.isAdmin = (...role) => {
 
 exports.authorized = async (req, res, next) => {
   if (req.user.id != req.profile._id) {
-    console.log(req.user.id);
-    console.log(req.profile._id);
     return res.status(403).json({
       message: { msgBody: "You are not allowed to perform this operation" },
     });

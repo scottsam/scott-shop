@@ -18,7 +18,6 @@ const Category = () => {
     e.preventDefault();
 
     createCategory(category).then((data) => {
-      console.log(data);
       reset();
     });
   };
