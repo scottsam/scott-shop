@@ -116,7 +116,6 @@ export const getUserdetails = (userId) => async (dispatch, getState) => {
       payload: data,
     });
   } catch (err) {
-    console.log(err);
     const message = err.response.data.message.Error
       ? err.response.data.message.msgBody
       : null;

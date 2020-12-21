@@ -16,6 +16,13 @@ const productRoute = require("./routes/product");
 const categoryRoute = require("./routes/category");
 const orderRoute = require("./routes/order");
 
+app.use((req, res, next) => {
+  res.append("Access-Control-Allow-Origin", ["*"]);
+  res.append("Access-Control-Allow-Methods", "GET,PUT,POST,DELETE");
+  res.append("Access-Control-Allow-Headers", "Content-Type");
+  next();
+});
+
 mongoose.connect(
   process.env.MONGO_URI,
   { useNewUrlParser: true, useUnifiedTopology: true },
@@ -33,7 +40,7 @@ app.use(
 
 app.use(cookieParser());
 
-app.use(cors());
+//app.use(cors());
 app.use((req, res, next) => {
   res.set("Cache-Control", "no-store");
 
@@ -47,9 +54,9 @@ app.use(express.static(path.join(__dirname, "build")));
 
 if (process.env.NODE_ENV === "production") {
   app.use(express.static(path.join(__dirname, "client", "build")));
-  app.use(cors({ origin: `${process.env.CLIENT_URL}` }));
+  //app.use(cors({ origin: `${process.env.CLIENT_URL}` }));
   app.get("*", (req, res) => {
-    res.sendFile(path.resolve(__dirname, "build", "index.html"));
+    res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
   });
 }
 
