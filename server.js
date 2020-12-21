@@ -41,8 +41,16 @@ app.use((req, res, next) => {
 });
 app.use(express.static(path.join(__dirname, "build")));
 
+//if (process.env.NODE_ENV === "production") {
+//app.use(cors({ origin: `${process.env.CLIENT_URL}` }));
+//}
+
 if (process.env.NODE_ENV === "production") {
+  app.use(express.static(path.join(__dirname, "client", "build")));
   app.use(cors({ origin: `${process.env.CLIENT_URL}` }));
+  app.get("*", (req, res) => {
+    res.sendFile(path.resolve(__dirname, "build", "index.html"));
+  });
 }
 
 const port = process.env.PORT || 8080;
