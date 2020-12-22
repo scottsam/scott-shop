@@ -31,7 +31,7 @@ const App = () => {
   return (
     <div>
       <BrowserRouter>
-        <Header />
+        {header}
         <main className="py-0">
           <Switch>
             <Route path="/payment" component={PaymentPage} />
@@ -90,7 +90,7 @@ const App = () => {
             <Route path="/" component={Landing} exact />
           </Switch>
         </main>
-        <Footer />
+        {footer}
       </BrowserRouter>
     </div>
   );
