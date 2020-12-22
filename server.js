@@ -16,12 +16,12 @@ const productRoute = require("./routes/product");
 const categoryRoute = require("./routes/category");
 const orderRoute = require("./routes/order");
 
-//app.use((req, res, next) => {
-// res.setHeader("Access-Control-Allow-Origin", "*");
-//res.append("Access-Control-Allow-Methods", "GET,PUT,POST,DELETE");
-//res.append("Access-Control-Allow-Headers", "Content-Type");
-//next();
-//});
+app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Methods", "GET,PUT,POST,DELETE");
+  res.header("Access-Control-Allow-Headers", "Content-Type");
+  next();
+});
 
 mongoose.connect(
   process.env.MONGO_URI,
@@ -47,17 +47,18 @@ app.use((req, res, next) => {
 
   next();
 });
-app.use("/", usersRoute);
-app.use("/", productRoute);
-app.use("/", categoryRoute);
-app.use("/", orderRoute);
 
 if (process.env.NODE_ENV === "production") {
-  app.use("/", express.static(path.join(__dirname, "./client/build")));
+  app.use(express.static(path.join(__dirname, "./client/build")));
   app.get("*", (req, res) => {
     res.sendFile(path.join(__dirname, "./client/build"));
   });
 }
+
+app.use("/", usersRoute);
+app.use("/", productRoute);
+app.use("/", categoryRoute);
+app.use("/", orderRoute);
 
 const port = process.env.PORT || 8000;
 
