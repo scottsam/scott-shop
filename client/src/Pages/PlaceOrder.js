@@ -6,6 +6,7 @@ import { createOrder } from "../Actions/orderActions";
 import { ORDER_CREATE_RESET } from "../Constants/orderConstants";
 import CheckoutSteps from "../Components/CheckOutSteps";
 import Message from "../Components/Message";
+import DefaultPic from "../Components/Image/doug_full1.png";
 
 const PlaceOrder = ({ history }) => {
   const dispatch = useDispatch();
@@ -127,6 +128,7 @@ const PlaceOrder = ({ history }) => {
                         <Col md={1}>
                           <Image
                             src={`/product/photo/${item.product}`}
+                            onError={(i) => (i.target.src = `${DefaultPic}`)}
                             alt={item.name}
                             fluid
                             roundedCircle

@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
+import DefaultPic from "../Components/Image/doug_full1.png";
 import {
   Button,
   Row,
@@ -59,6 +60,7 @@ const Cart = ({ location, history }) => {
                         <Image
                           src={`/product/photo/${item.product}`}
                           alt={item.name}
+                          onError={(i) => (i.target.src = `${DefaultPic}`)}
                           fluid
                           rounded
                         />

@@ -4,6 +4,7 @@ import { Link, useParams } from "react-router-dom";
 import { PayPalButton } from "react-paypal-button-v2";
 import { Button, Row, Col, ListGroup, Image, Card } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
+import DefaultPic from "../Components/Image/doug_full1.png";
 
 import Loader from "../Components/Loader";
 import Message from "../Components/Message";
@@ -206,6 +207,7 @@ const OrderPage = ({ history, match }) => {
                         <Col md={1}>
                           <Image
                             src={`/product/photo/${item.product}`}
+                            onError={(i) => (i.target.src = `${DefaultPic}`)}
                             alt={item.name}
                             fluid
                             rounded

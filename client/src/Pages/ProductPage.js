@@ -15,6 +15,7 @@ import Loader from "../Components/Loader";
 import HelmetMeta from "../Components/Helmet";
 import Rating from "../Components/Rating";
 import { PRODUCT_CREATE_REVIEW_RESET } from "../Constants/productContants";
+import DefaultPic from "../Components/Image/doug_full1.png";
 
 import {
   listproductDetails,
@@ -76,7 +77,12 @@ const ProductPage = ({ history, match }) => {
             <HelmetMeta title={product.name} />
             <Row className="text-center">
               <Col md={6}>
-                <Image src={`/product/photo/${productId}`} fluid rounded />
+                <Image
+                  src={`/product/photo/${productId}`}
+                  fluid
+                  rounded
+                  onError={(i) => (i.target.src = `${DefaultPic}`)}
+                />
               </Col>
               <Col md={6}>
                 <Card>
