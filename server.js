@@ -39,6 +39,7 @@ app.use(
 );
 
 app.use(cookieParser());
+app.use(express.static(path.join(__dirname, "client", "build")));
 
 //app.use(cors());
 
@@ -47,13 +48,6 @@ app.use((req, res, next) => {
 
   next();
 });
-
-if (process.env.NODE_ENV === "production") {
-  app.use(express.static(path.join(__dirname, "/client/build")));
-  app.get("*", (req, res) => {
-    res.sendFile(path.join(__dirname, "/client/build/"));
-  });
-}
 
 app.use("/", usersRoute);
 app.use("/", productRoute);
@@ -64,6 +58,10 @@ const port = process.env.PORT || 8000;
 
 app.get("/config/paypal", (req, res) => {
   res.send(process.env.PAYPAL_CLIENT_ID);
+});
+
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname + "/client/build/index.html"));
 });
 
 app.listen(port, () => {
