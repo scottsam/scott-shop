@@ -41,29 +41,27 @@ app.use(
 app.use(cookieParser());
 
 //app.use(cors());
+
+app.use("/", usersRoute);
+app.use("/", productRoute);
+app.use("/", categoryRoute);
+app.use("/", orderRoute);
+
 app.use((req, res, next) => {
   res.set("Cache-Control", "no-store");
 
   next();
 });
 
-if (process.env.NODE_ENV === "development") {
-  app.use(cors({ origin: `${process.env.CLIENT_URL}`, method: "GET" }));
-}
-
 if (process.env.NODE_ENV === "production") {
   app.use(express.static(path.join(__dirname, "./client/build")));
   app.get("*", (req, res) => {
-    res.sendFile(path.join(__dirname, "./client/build/index.html"));
+    res.sendFile(path.join(__dirname, "./client/build"));
   });
 }
 
 const port = process.env.PORT || 8000;
 
-app.use("/", usersRoute);
-app.use("/", productRoute);
-app.use("/", categoryRoute);
-app.use("/", orderRoute);
 app.get("/config/paypal", (req, res) => {
   res.send(process.env.PAYPAL_CLIENT_ID);
 });
