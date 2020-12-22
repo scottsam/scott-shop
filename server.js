@@ -42,16 +42,15 @@ app.use(cookieParser());
 
 //app.use(cors());
 
-app.use("/", usersRoute);
-app.use("/", productRoute);
-app.use("/", categoryRoute);
-app.use("/", orderRoute);
-
 app.use((req, res, next) => {
   res.set("Cache-Control", "no-store");
 
   next();
 });
+app.use("/", usersRoute);
+app.use("/", productRoute);
+app.use("/", categoryRoute);
+app.use("/", orderRoute);
 
 if (process.env.NODE_ENV === "production") {
   app.use(express.static(path.join(__dirname, "./client/build")));
