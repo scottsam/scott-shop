@@ -33,7 +33,7 @@ const Header = () => {
         sticky="top"
       >
         <Container>
-          <LinkContainer to="/">
+          <LinkContainer to="/home">
             <Navbar.Brand>MyShop</Navbar.Brand>
           </LinkContainer>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
