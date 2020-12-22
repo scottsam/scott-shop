@@ -46,7 +46,6 @@ app.use((req, res, next) => {
 
   next();
 });
-app.use(express.static(path.join(__dirname, "build")));
 
 if (process.env.NODE_ENV === "development") {
   app.use(cors({ origin: `${process.env.CLIENT_URL}`, method: "GET" }));
