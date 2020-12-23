@@ -9,12 +9,7 @@ const CategoryPage = ({ history }) => {
   const { categoryId } = useParams();
 
   const aCategory = async () => {
-    const config = {
-      headers: {
-        "Content-Type": "application/json",
-      },
-    };
-    const { data } = await axios.get(`/category/${categoryId}`, config);
+    const { data } = await axios.get(`/category/${categoryId}`);
     setCategory(data);
   };
 
