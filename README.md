@@ -16,4 +16,6 @@ Technologies Used
 4.Node/express backend
 5.Formidable
 
+Project URL: https://scott-ecomm-shop.herokuapp.com/
+
 
