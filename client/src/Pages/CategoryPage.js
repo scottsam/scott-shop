@@ -10,7 +10,7 @@ const CategoryPage = ({ history }) => {
 
   const aCategory = async () => {
     const { data } = await axios.get(`/category/${categoryId}`);
-    setCategory(data);
+    setCategory((old) => data);
   };
 
   useEffect(() => {
