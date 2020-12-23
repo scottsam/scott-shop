@@ -26,8 +26,8 @@ import CategoryPage from "./Pages/CategoryPage";
 import Landing from "./Pages/Landing";
 
 const App = () => {
-  //let header = window.location.pathname !== "/" ? <Header /> : null;
-  //let footer = window.location.pathname !== "/" ? <Footer /> : null;
+  let header = window.location.pathname !== "/" ? <Header /> : null;
+  let footer = window.location.pathname !== "/" ? <Footer /> : null;
   return (
     <div>
       <BrowserRouter>
