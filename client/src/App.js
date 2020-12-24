@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 
 import Register from "./Pages/Register";
@@ -26,8 +26,19 @@ import CategoryPage from "./Pages/CategoryPage";
 import Landing from "./Pages/Landing";
 
 const App = () => {
-  let header = window.location.pathname !== "/" ? <Header /> : null;
-  let footer = window.location.pathname !== "/" ? <Footer /> : null;
+  const header =
+    window.location.pathname !== "/" ? (
+      <>
+        <Header />
+      </>
+    ) : null;
+  const footer =
+    window.location.pathname !== "/" ? (
+      <>
+        <Footer />
+      </>
+    ) : null;
+
   return (
     <div>
       <BrowserRouter>
@@ -87,7 +98,7 @@ const App = () => {
             />
             <Route path="/page/:pageNumber" component={HomePage} />
             <Route path="/home" component={HomePage} />
-            <Route path="/" component={Landing} exact />
+            <Route path="/" component={Landing} />
           </Switch>
         </main>
         {footer}
