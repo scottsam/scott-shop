@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from "react";
-import axios from "axios";
+import React from "react";
 import { Route } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { LinkContainer } from "react-router-bootstrap";
@@ -8,7 +7,6 @@ import Search from "./Search";
 import { logout } from "../Actions/userActions";
 
 const Header = () => {
-  const [category, setCategory] = useState([]);
   const dispatch = useDispatch();
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
@@ -34,7 +32,7 @@ const Header = () => {
       >
         <Container>
           <LinkContainer to="/home">
-            <Navbar.Brand>MyShop</Navbar.Brand>
+            <Navbar.Brand>Scott-Shop</Navbar.Brand>
           </LinkContainer>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
