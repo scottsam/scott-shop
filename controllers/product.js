@@ -228,7 +228,7 @@ exports.deleteProduct = async (req, res) => {
 
 exports.productPhoto = (req, res) => {
   res.set(("Content-Type", req.product.photo.contentType));
-  return res.json(req.product.photo.data);
+  return res.send(req.product.photo.data);
 };
 
 exports.createProductReview = async (req, res) => {

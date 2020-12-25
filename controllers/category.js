@@ -28,7 +28,16 @@ exports.newCategory = async (req, res) => {
 };
 
 exports.getCategory = async (req, res) => {
-  return res.json(req.category);
+  let id = req.params.categoryId;
+  const category = await Category.findById({ _id: id });
+  if (!category)
+    return res.status(400).json({
+      message: {
+        msgBody: "no Category found",
+        Error: true,
+      },
+    });
+  return res.json(category);
 };
 
 exports.getAllCategories = async (req, res) => {
