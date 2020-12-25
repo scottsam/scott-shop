@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
+import { getCategory } from "../AuthService/categoryApi";
 import { Link, useParams } from "react-router-dom";
-import { LinkContainer } from "react-router-bootstrap";
 import { Row, Col, Container, Dropdown } from "react-bootstrap";
 import { useSelector, useDispatch } from "react-redux";
 import { listProduct } from "../Actions/productAction";
@@ -12,22 +11,18 @@ import Product from "../Components/ProductCard";
 import ProductCarosel from "../Components/ProductCarol";
 import HelmetMeta from "../Components/Helmet";
 
-const HomePage = ({ match, history }) => {
+const HomePage = ({}) => {
   const [categories, setCategories] = useState([]);
-  const [category, setCategory] = useState({});
+  const [] = useState({});
   const dispatch = useDispatch();
   const productList = useSelector((state) => state.productList);
-  const { loading, error, products, page, pages } = productList;
+  const { loading, error, products, pages } = productList;
   const { keyword, pageNumber } = useParams();
 
-  const allCategory = async () => {
-    const config = {
-      headers: {
-        "Content-Type": "application/json",
-      },
-    };
-    const { data } = await axios.get("/categories", config);
-    setCategories(data);
+  const allCategory = () => {
+    getCategory().then((data) => {
+      setCategories(data);
+    });
   };
 
   useEffect(() => {

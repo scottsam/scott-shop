@@ -2,9 +2,12 @@ import axios from "axios";
 
 export const getCategory = async () => {
   try {
-    const response = await fetch("/categories", {
-      method: "get",
-    });
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+    const response = await axios.get("/categories", config);
     const data = await response.json();
 
     return data;
