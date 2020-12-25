@@ -28,7 +28,7 @@ exports.newCategory = async (req, res) => {
 };
 
 exports.getCategory = async (req, res) => {
-  let category = req.Category;
+  let category = req.category;
   if (!category)
     return res.status(400).json({
       message: {
