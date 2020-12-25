@@ -16,6 +16,16 @@ const productRoute = require("./routes/product");
 const categoryRoute = require("./routes/category");
 const orderRoute = require("./routes/order");
 
+app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Methods", "GET,PUT,POST,DELETE");
+  res.header(
+    "Access-Control-Allow-Headers",
+    "Content-Type, Origin, Accept,X-Requested-with"
+  );
+  next();
+});
+
 mongoose.connect(
   process.env.MONGO_URI,
   { useNewUrlParser: true, useUnifiedTopology: true },
@@ -53,7 +63,7 @@ app.get("/config/paypal", (req, res) => {
   res.send(process.env.PAYPAL_CLIENT_ID);
 });
 
-app.get("*", (req, res) => {
+app.get("/*", (req, res) => {
   res.sendFile(path.join(__dirname + "/client/build/index.html"));
 });
 
