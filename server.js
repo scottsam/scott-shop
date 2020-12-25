@@ -19,7 +19,10 @@ const orderRoute = require("./routes/order");
 app.use((req, res, next) => {
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Methods", "GET,PUT,POST,DELETE");
-  res.header("Access-Control-Allow-Headers", "Content-Type");
+  res.header(
+    "Access-Control-Allow-Headers",
+    "Content-Type, Origin, Accept,X-Requested-with"
+  );
   next();
 });
 
