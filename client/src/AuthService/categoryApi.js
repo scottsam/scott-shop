@@ -12,13 +12,16 @@ export const getCategory = async () => {
 };
 export const getCat = async (categoryId) => {
   try {
-    const response = await fetch(`/category/${categoryId}`, {
-      method: "get",
+    const response = await fetch(
+      `https://scott-ecomm-shop.herokuapp.com/category/${categoryId}`,
+      {
+        method: "get",
 
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
     const data = JSON.stringify(response.json());
 
     return data;
