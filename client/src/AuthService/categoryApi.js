@@ -14,8 +14,8 @@ export const getCat = async (categoryId) => {
   try {
     const response = await fetch(`/category/${categoryId}`, {
       method: "get",
+
       headers: {
-        Accept: "application/json",
         "Content-Type": "application/json",
       },
     });
