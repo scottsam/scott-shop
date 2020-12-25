@@ -5,10 +5,12 @@ exports.categoryById = async (req, res, next, id) => {
   try {
     const category = await Category.findById(id).populate("products");
 
-    if (!category)
+    if (!category) {
       return res
         .status(400)
         .json({ message: { msgBody: "No category Found", Error: true } });
+    }
+
     req.category = category;
     next();
   } catch (err) {
