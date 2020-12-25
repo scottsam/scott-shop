@@ -1,3 +1,5 @@
+import axios from "axios";
+
 export const getCategory = async () => {
   try {
     const response = await fetch("/categories", {
@@ -12,17 +14,13 @@ export const getCategory = async () => {
 };
 export const getCat = async (categoryId) => {
   try {
-    const response = await fetch(
-      `https://scott-ecomm-shop.herokuapp.com/category/${categoryId}`,
-      {
-        method: "get",
-
-        headers: {
-          "Content-Type": "application/json",
-        },
-      }
-    );
-    const data = JSON.stringify(response.json());
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+    const response = await axios.get(`/category/${categoryId}`, config);
+    const data = await response.json();
 
     return data;
   } catch (err) {
