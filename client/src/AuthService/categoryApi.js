@@ -19,7 +19,7 @@ export const getCat = async (categoryId) => {
         "Content-Type": "application/json",
       },
     });
-    const data = await response.json();
+    const data = JSON.stringify(response.json());
 
     return data;
   } catch (err) {
