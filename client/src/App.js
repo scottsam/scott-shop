@@ -46,7 +46,7 @@ const App = () => {
         <main className="py-0">
           <Switch>
             <Route path="/payment" component={PaymentPage} />
-            <Route path="/category/:categoryId" component={CategoryPage} />
+
             <Route path="/placeorder" component={PlaceOrder} />
             <Route path="/shipping" component={ShippingPage} />
 
@@ -98,6 +98,7 @@ const App = () => {
             />
             <Route path="/page/:pageNumber" component={HomePage} />
             <Route path="/home" component={HomePage} />
+            <Route path="/category/:categoryId" component={CategoryPage} />
             <Route path="/" component={Landing} />
           </Switch>
         </main>

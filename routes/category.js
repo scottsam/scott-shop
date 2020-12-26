@@ -8,8 +8,8 @@ const {
   getAllCategories,
 } = require("../controllers/category");
 
-router.post("/category", newCategory);
-router.get("/categories", getAllCategories);
+router.post("/category/new", newCategory);
+router.get("/category/all", getAllCategories);
 router.get("/category/:categoryId", getCategory);
 
 router.param("categoryId", categoryById);
