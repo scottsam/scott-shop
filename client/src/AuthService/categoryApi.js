@@ -7,13 +7,13 @@ export const getAllCategory = async () => {
     },
   };
   const { data } = await axios.get("/category/all", config);
-  console.log(data);
+
   return data;
 };
 
 export const createCategory = async (category) => {
   try {
-    const response = await fetch(`/all`, {
+    const response = await fetch(`/category/new`, {
       method: "POST",
       headers: {
         "Content-Type": "Application/json",
