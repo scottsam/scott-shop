@@ -3,13 +3,20 @@ import { Container, Row, Col } from "react-bootstrap";
 import { useParams } from "react-router-dom";
 import Product from "../Components/ProductCard";
 import { getCat } from "../AuthService/categoryApi";
-
+import axios from "axios";
 const CategoryPage = ({ history }) => {
   const [category, setCategory] = useState(null);
   const { categoryId } = useParams();
 
+  //const aCategory = () => {
+  // getCat(categoryId).then((data) => {
+  // console.log(data);
+  // setCategory(data);
+  // });
+  //};
   const aCategory = () => {
-    getCat(categoryId).then((data) => {
+    axios.get(`/category/${categoryId}`).then((resp) => {
+      const { data } = resp;
       setCategory(data);
     });
   };

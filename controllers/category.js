@@ -5,12 +5,10 @@ exports.categoryById = async (req, res, next, id) => {
   try {
     const category = await Category.findById(id).populate("products");
 
-    if (!category) {
+    if (!category)
       return res
         .status(400)
         .json({ message: { msgBody: "No category Found", Error: true } });
-    }
-
     req.category = category;
     next();
   } catch (err) {
@@ -28,15 +26,7 @@ exports.newCategory = async (req, res) => {
 };
 
 exports.getCategory = async (req, res) => {
-  let category = req.category;
-  if (!category)
-    return res.status(400).json({
-      message: {
-        msgBody: "no Category found",
-        Error: true,
-      },
-    });
-  res.json({ category });
+  return res.json(req.category);
 };
 
 exports.getAllCategories = async (req, res) => {

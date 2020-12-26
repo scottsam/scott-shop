@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { getCategory } from "../AuthService/categoryApi";
+import axios from "axios";
 import { Link, useParams } from "react-router-dom";
 import { Row, Col, Container, Dropdown } from "react-bootstrap";
 import { useSelector, useDispatch } from "react-redux";
@@ -19,10 +19,14 @@ const HomePage = ({}) => {
   const { loading, error, products, pages } = productList;
   const { keyword, pageNumber } = useParams();
 
-  const allCategory = () => {
-    getCategory().then((data) => {
-      setCategories(data);
-    });
+  const allCategory = async () => {
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+    const { data } = await axios.get("/categories", config);
+    setCategories(data);
   };
 
   useEffect(() => {

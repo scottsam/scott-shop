@@ -54,8 +54,8 @@ app.use((req, res, next) => {
 
 app.use("/", usersRoute);
 app.use("/", productRoute);
-app.use("/", categoryRoute);
 app.use("/", orderRoute);
+app.use("/", categoryRoute);
 
 const port = process.env.PORT || 8000;
 

@@ -41,7 +41,6 @@ const ProductPage = ({ history, match }) => {
     error: errorProductReview,
     product: productReview,
   } = productReviewCreate;
-  console.log(errorProductReview);
 
   useEffect(() => {
     if (successProductReview) {
@@ -194,17 +193,15 @@ const ProductPage = ({ history, match }) => {
                             </h5>
                           </Card.Subtitle>
                           <Card.Text>
-                            <p>
-                              <span id="coma">"</span> {review.comment}....
-                              <span id="coma">"</span>
-                            </p>
+                            <span id="coma">"</span> {review.comment}....
+                            <span id="coma">"</span>
                           </Card.Text>
                         </Card.Body>
                         <Card.Footer>
                           <Rating value={review.rating} />
 
                           <Card.Text>
-                            <p>{review.createdAt.substring(0, 10)}</p>
+                            {review.createdAt.substring(0, 10)}
                           </Card.Text>
                         </Card.Footer>
                       </ListGroup.Item>

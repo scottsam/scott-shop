@@ -2,12 +2,9 @@ import axios from "axios";
 
 export const getCategory = async () => {
   try {
-    const config = {
-      headers: {
-        "Content-Type": "application/json",
-      },
-    };
-    const response = await axios.get("/categories", config);
+    const response = await fetch("/categories", {
+      method: "get",
+    });
     const data = await response.json();
 
     return data;
@@ -17,12 +14,13 @@ export const getCategory = async () => {
 };
 export const getCat = async (categoryId) => {
   try {
-    const config = {
+    const response = await fetch(`/category/${categoryId}`, {
+      method: "get",
+
       headers: {
         "Content-Type": "application/json",
       },
-    };
-    const response = await axios.get(`/category/${categoryId}`, config);
+    });
     const data = await response.json();
 
     return data;
