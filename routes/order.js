@@ -10,7 +10,7 @@ const {
   updateOrderToPaid,
   getOrder_Id,
 } = require("../controllers/order");
-const { authUser, authorized, isAdmin } = require("../controllers/user");
+const { authUser, isAdmin } = require("../controllers/user");
 
 const { userById } = require("../controllers/user");
 

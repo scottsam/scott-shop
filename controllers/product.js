@@ -8,9 +8,7 @@ const Category = require("../models/Category");
 
 exports.productById = async (req, res, next, id) => {
   try {
-    const product = await Product.findById(id)
-      .populate("category", "tag _id")
-      .exec();
+    const product = await Product.findById(id).populate("category", "tag _id");
 
     if (!product)
       return res
@@ -274,4 +272,22 @@ exports.getTopProducts = async (req, res) => {
   const products = await Product.find().sort({ rating: -1 }).limit(4);
 
   res.json(products);
+};
+exports.productByCategory = async (req, res) => {
+  let id = req.params.categoryId;
+  try {
+    const product = await Product.find({ category: id }).populate(
+      "category",
+      "_id tag"
+    );
+
+    if (!product) {
+      res
+        .status(404)
+        .json({ message: { msgBody: "Product not found", Error: true } });
+    }
+    res.json(product);
+  } catch (err) {
+    console.log(err);
+  }
 };

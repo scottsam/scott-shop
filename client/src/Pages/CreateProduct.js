@@ -1,4 +1,4 @@
-import axios from "axios";
+import { getAllCategory } from "../AuthService/categoryApi";
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Form, Button } from "react-bootstrap";
@@ -26,14 +26,10 @@ const CreateProduct = ({ history }) => {
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
 
-  const allCategory = async () => {
-    const config = {
-      headers: {
-        "Content-Type": "application/json",
-      },
-    };
-    const { data } = await axios.get("/categories", config);
-    setCategories(data);
+  const allCategory = () => {
+    getAllCategory().then((data) => {
+      setCategories(data);
+    });
   };
 
   const resetForm = () => {

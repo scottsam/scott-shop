@@ -3,7 +3,7 @@ const Product = require("../models/Product");
 
 exports.categoryById = async (req, res, next, id) => {
   try {
-    const category = await Category.findById(id).populate("products");
+    const category = await Category.findById(id).populate("products").select('')
 
     if (!category)
       return res

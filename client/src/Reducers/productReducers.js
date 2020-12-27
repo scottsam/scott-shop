@@ -25,6 +25,9 @@ import {
   PRODUCT_CREATE_RESET,
   PRODUCT_CREATE_SUCCESS,
   PRODUCT_CREATE_REVIEW_RESET,
+  PRODUCT_CATEGORY_REQUEST,
+  PRODUCT_CATEGORY_FAIL,
+  PRODUCT_CATEGORY_SUCCESS,
 } from "../Constants/productContants";
 
 export const productListReducer = (state = { products: [] }, action) => {
@@ -55,6 +58,17 @@ export const productTopRatedReducer = (state = { products: [] }, action) => {
         products: action.payload,
       };
     case PRODUCT_TOP_FAIL:
+      return { loading: true, error: action.payload };
+
+    default:
+      return state;
+  }
+};
+export const productCategoryReducer = (state = { products: [] }, action) => {
+  switch (action.type) {
+    case PRODUCT_CATEGORY_SUCCESS:
+      return { loading: false, products: action.payload };
+    case PRODUCT_CATEGORY_FAIL:
       return { loading: true, error: action.payload };
 
     default:

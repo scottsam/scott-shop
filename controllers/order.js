@@ -31,6 +31,7 @@ exports.addOrderItems = async (req, res) => {
       res.status(201).json(createdOrder);
     }
   } catch (err) {
+    console.log(err);
     return res
       .status(400)
       .json({ message: { msgBody: `Paymentmethod missing`, Error: true } });
@@ -58,7 +59,7 @@ exports.orderById = async (req, res, next, id) => {
 };
 exports.getOrder_Id = (req, res) => {
   let order = req.order;
-  console.log(order);
+
   return res.json(order);
 };
 
@@ -96,7 +97,6 @@ exports.updateOrderToDelivered = async (req, res) => {
 
 exports.getMyOrders = async (req, res) => {
   try {
-    console.log(req.profile);
     const orders = await Order.find({ user: req.user.id }).populate(
       "user",
       "_id name email"

@@ -13,7 +13,7 @@ import HelmetMeta from "../Components/Helmet";
 
 const HomePage = ({}) => {
   const [categories, setCategories] = useState([]);
-  const [] = useState({});
+
   const dispatch = useDispatch();
   const productList = useSelector((state) => state.productList);
   const { loading, error, products, pages } = productList;
@@ -21,7 +21,6 @@ const HomePage = ({}) => {
 
   const allCategory = () => {
     getAllCategory().then((data) => {
-      console.log(data);
       setCategories(data);
     });
   };
@@ -49,7 +48,7 @@ const HomePage = ({}) => {
           </Dropdown.Toggle>
           <Dropdown.Menu>
             {categories.map((cat, i) => (
-              <Dropdown.Item href={`/category/${cat._id}`} key={i}>
+              <Dropdown.Item href={`/product-category/${cat._id}`} key={i}>
                 {cat.tag}
               </Dropdown.Item>
             ))}

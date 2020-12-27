@@ -7,7 +7,7 @@ const {
   getSingleProduct,
   updateProduct,
   getAllProducts,
-  productsByUser,
+  productByCategory,
   deleteProduct,
   productPhoto,
   createProductReview,
@@ -19,9 +19,11 @@ const { userById } = require("../controllers/user");
 
 router.post("/product", authUser, isAdmin(), createProduct);
 router.get("/products", getAllProducts);
+
 router.get("/product/:productId", getSingleProduct);
 router.get("/product-top/", getTopProducts);
 router.get("/product/photo/:productId", productPhoto);
+router.get("/products/:categoryId", productByCategory);
 router.put("/product/:productId", authUser, isAdmin(), updateProduct);
 
 router.delete("/product/:productId", authUser, isAdmin(), deleteProduct);

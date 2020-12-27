@@ -98,7 +98,10 @@ const App = () => {
             />
             <Route path="/page/:pageNumber" component={HomePage} />
             <Route path="/home" component={HomePage} />
-            <Route path="/category/:categoryId" component={CategoryPage} />
+            <Route
+              path="/product-category/:categoryId"
+              component={CategoryPage}
+            />
             <Route path="/" component={Landing} />
           </Switch>
         </main>

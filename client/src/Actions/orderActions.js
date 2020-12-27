@@ -183,7 +183,6 @@ export const listMyOrders = (id) => async (dispatch, getState) => {
       payload: data,
     });
   } catch (err) {
-    console.log(err);
     dispatch({
       type: ORDER_LIST_MY_FAIL,
       payload: err.response.message.Error ? err.response.message.msgBody : null,

@@ -20,6 +20,9 @@ import {
   PRODUCT_CREATE_REQUEST,
   PRODUCT_CREATE_FAIL,
   PRODUCT_CREATE_SUCCESS,
+  PRODUCT_CATEGORY_SUCCESS,
+  PRODUCT_CATEGORY_FAIL,
+  PRODUCT_CATEGORY_REQUEST,
 } from "../Constants/productContants";
 import { logout } from "./userActions";
 
@@ -53,6 +56,28 @@ export const listProduct = (keyword = "", pageNumber = "") => async (
     dispatch({
       type: PRODUCT_LIST_FAIL,
       payload: message.msgBody,
+    });
+  }
+};
+export const listProductCategory = (categoryId) => async (dispatch) => {
+  try {
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+
+    const { data } = await axios.get(`/products/${categoryId}`, config);
+
+    dispatch({
+      type: PRODUCT_CATEGORY_SUCCESS,
+      payload: data,
+    });
+  } catch (err) {
+    console.log(err);
+    dispatch({
+      type: PRODUCT_CATEGORY_FAIL,
+      payload: err.response,
     });
   }
 };

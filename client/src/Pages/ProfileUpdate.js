@@ -9,11 +9,9 @@ import Message from "../Components/Message";
 import FormContainer from "../Components/FormContainer";
 
 import { getUserdetails, updateUserProfile } from "../Actions/userActions";
-import { listMyOrders } from "../Actions/orderActions";
 import { USER_UPDATE_PROFILE_RESET } from "../Constants/userConstant";
 import { Link } from "react-router-dom";
-import { LinkContainer } from "react-router-bootstrap";
-const ProfileUpdate = ({ history, location }) => {
+const ProfileUpdate = ({ history }) => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -30,8 +28,6 @@ const ProfileUpdate = ({ history, location }) => {
 
   const userUpdateProfile = useSelector((state) => state.userUpdateProfile);
   const { success } = userUpdateProfile;
-
-  const orderListMy = useSelector((state) => state.orderListMy);
 
   useEffect(() => {
     if (!userInfo) {
